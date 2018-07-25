@@ -1,0 +1,16 @@
+[Unit]
+Description=Shadowsocks server daemon
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/ssserver -c /etc/shadowsocks/shadowsocks.conf -d 
+start
+ExecReload=/usr/bin/ssserver -c /etc/shadowsocks/shadowsocks.conf -d 
+restart
+ExecStop=/usr/bin/ssserver -c /etc/shadowsocks/shadowsocks.conf -d stop
+Type=forking
+Restart=on-abnormal
+RestartSec=2s
+
+[Install]
+WantedBy=multi-user.target
